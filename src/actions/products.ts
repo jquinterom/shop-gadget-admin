@@ -7,6 +7,7 @@ import {
   UpdateProductSchema,
 } from "@/src/app/admin/products/products.types";
 import { CreateProductSchemaServer } from "@/src/app/admin/products/schema";
+import { revalidatePath } from "next/cache";
 
 export const getProductsWithCategories =
   async (): Promise<ProductsWithCategoriesResponse> => {
@@ -49,6 +50,8 @@ export const createProduct = async ({
     throw new Error(`Error creating product: ${error.message}`);
   }
 
+  revalidatePath("/admin/products");
+
   return data;
 };
 
@@ -77,6 +80,8 @@ export const updateProduct = async ({
     throw new Error(`Error updating product: ${error.message}`);
   }
 
+  revalidatePath("/admin/products");
+
   return data;
 };
 
@@ -90,6 +95,8 @@ export const deleteProduct = async (slug: string) => {
   if (error) {
     throw new Error(`Error deleting product: ${error.message}`);
   }
+
+  revalidatePath("/admin/products");
 
   return data;
 };

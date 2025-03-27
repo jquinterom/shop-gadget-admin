@@ -1,5 +1,6 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
 import { CategoriesWithProductsResponse } from "../app/admin/categories/categories.types";
 import {
   CreateCategorySchemaServer,
@@ -74,6 +75,8 @@ export const createCategory = async ({
 
   if (error) throw new Error(`Error creating category: ${error.message}`);
 
+  revalidatePath("/admin/categories");
+
   return data;
 };
 
@@ -97,6 +100,8 @@ export const updateCategory = async ({
 
   if (error) throw new Error(`Error updating category: ${error.message}`);
 
+  revalidatePath("/admin/categories");
+
   return data;
 };
 
@@ -109,4 +114,6 @@ export const deleteCategory = async (id: number) => {
     .match({ id });
 
   if (error) throw new Error(`Error deleting category: ${error.message}`);
+
+  revalidatePath("/admin/categories");
 };
