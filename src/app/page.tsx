@@ -119,9 +119,10 @@ export default function Home() {
                 </Button>
               </MotionWrapper>
             </div>
-            <div className="w-1/3">
+
+            <div className="w-2/3 md:w-1/3">
               <motion.div
-                className="relative "
+                className="relative"
                 style={{ perspective: 1000 }}
                 animate={{
                   rotateX: isHovered ? rotate.rotateX : 0,
@@ -139,7 +140,7 @@ export default function Home() {
                   alt="GadgetApp Screenshots"
                   className="rounded-3xl object-cover shadow-2xl mx-auto h-[500px] w-[250px]"
                 />
-                <Badge className="absolute top-4 right-4 bg-[#1BC464] text-white">
+                <Badge className="absolute top-4 right-18 sm:right-18 md:right-3 lg:right-12 xl:right-22 2xl:right-32 bg-[#1BC464] text-white">
                   New Release
                 </Badge>
               </motion.div>
